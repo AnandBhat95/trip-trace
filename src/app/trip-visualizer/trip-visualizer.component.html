@@ -1,0 +1,12 @@
+<div class="trip-flow-container">
+    <ng-container *ngFor="let trip of processedTrips; let i = index">
+      <div class="trip-segment" [ngClass]="'level-' + trip.level">
+        <span class="label">{{ trip.start.slice(0, 3) }}-{{ trip.end.slice(0, 3) }}</span>
+        <div class="line-wrapper" *ngIf="i < processedTrips.length - 1">
+          <div class="line"></div>
+          <span *ngIf="trip.level === 1 && !trip.continued" class="arrow">→</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  

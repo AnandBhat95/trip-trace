@@ -1,0 +1,12 @@
+.trip-input-container {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  input {
+    padding: 0.5rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+  }
+  
