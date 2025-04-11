@@ -1,12 +1,78 @@
-<div class="trip-flow-container">
+<ko-stage [config]="stageConfig">
+  <ko-layer>
     <ng-container *ngFor="let trip of processedTrips; let i = index">
-      <div class="trip-segment" [ngClass]="'level-' + trip.level">
-        <span class="label">{{ trip.start.slice(0, 3) }}-{{ trip.end.slice(0, 3) }}</span>
-        <div class="line-wrapper" *ngIf="i < processedTrips.length - 1">
-          <div class="line"></div>
-          <span *ngIf="trip.level === 1 && !trip.continued" class="arrow">→</span>
-        </div>
-      </div>
+      <ko-circle
+        [config]="{
+          x: trip.x,
+          y: trip.y,
+          radius: 6,
+          fill: trip.color
+        }"
+      ></ko-circle>
+      <ko-text
+        [config]="{
+          x: trip.x - 20,
+          y: trip.y + 12,
+          text: trip.label,
+          fontSize: 14,
+          fill: 'white'
+        }"
+      ></ko-text>
+      <ng-container *ngIf="i < processedTrips.length - 1">
+        <ng-container *ngIf="trip.continued && trip.level === 2 && processedTrips[i + 1].level === 2">
+          <ko-line
+            [config]="{
+              points: [
+                trip.x,
+                trip.y,
+                (trip.x + processedTrips[i + 1].x) / 2,
+                trip.y - 60,
+                processedTrips[i + 1].x,
+                processedTrips[i + 1].y
+              ],
+              stroke: trip.color,
+              strokeWidth: 2,
+              lineCap: 'round',
+              lineJoin: 'round',
+              tension: 0.5,
+              bezier: true
+            }"
+          ></ko-line>
+        </ng-container>
+        <ng-container *ngIf="trip.continued && trip.level === 1">
+          <ko-line
+            [config]="{
+              points: [
+                trip.x,
+                trip.y,
+                processedTrips[i + 1].x,
+                processedTrips[i + 1].y
+              ],
+              stroke: trip.color,
+              strokeWidth: 2,
+              lineCap: 'round'
+            }"
+          ></ko-line>
+        </ng-container>
+        <ng-container *ngIf="!trip.continued">
+          <ko-arrow
+            [config]="{
+              points: [
+                trip.x,
+                trip.y,
+                processedTrips[i + 1].x,
+                processedTrips[i + 1].y
+              ],
+              pointerLength: 10,
+              pointerWidth: 10,
+              stroke: trip.color,
+              fill: trip.color,
+              strokeWidth: 2
+            }"
+          ></ko-arrow>
+        </ng-container>
+
+      </ng-container>
     </ng-container>
-  </div>
-  
+  </ko-layer>
+</ko-stage>

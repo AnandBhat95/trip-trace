@@ -1,12 +1,37 @@
 .trip-input-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
-  input {
-    padding: 0.5rem;
-  }
-  button {
-    padding: 0.5rem 1rem;
-  }
-  
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 40px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.trip-input-container input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+  width: 180px;
+  transition: border-color 0.2s ease;
+}
+
+.trip-input-container input:focus {
+  border-color: #007bff;
+}
+
+.trip-input-container button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.trip-input-container button:hover {
+  background-color: #0056b3;
+}

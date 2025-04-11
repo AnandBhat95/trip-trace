@@ -1,5 +1,5 @@
 <div class="trip-input-container">
-    <input [(ngModel)]="start" (keydown.enter)="submitTrip()" placeholder="Start Point" />
+    <input #startInput [(ngModel)]="start" (keydown.enter)="submitTrip()" placeholder="Start Point" />
     <input [(ngModel)]="end" (keydown.enter)="submitTrip()" placeholder="End Point" />
     <button (click)="submitTrip()">Add Trip</button>
 </div>
